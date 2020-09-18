@@ -55,4 +55,5 @@ console.log(`0 === "" : ${0 === ""}`);
  const constant = '상수';
  constant = 'Constant';
  console.log(constant);
- 
+
+ // const exp = require('express'); exp를 함수 불러내는 데 쓴다.
