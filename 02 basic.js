@@ -38,11 +38,11 @@ console.log(parseInt('52.7'));
 
 console.log(parseFloat('287'));
 console.log(parseFloat(true));
-console.log(parseFloat('52.7')); */
+console.log(parseFloat('52.7')); Number보다 parseInt, parseFloat를 더 많이 쓴다. */
 
 // 숫자의 문자열 자동 변환
-/* console.log(52 + 253);
-console.log('53'+ 123); */
+console.log(52 + 253);
+console.log('53'+ 123);
 
 //일치 연산자
 /* console.log(`52 == '52' : ${52 == '52'}`);
@@ -52,8 +52,8 @@ console.log(`0 === "" : ${0 === ""}`);
  */
 
  //상수
- const constant = '상수';
+ /* const constant = '상수';
  constant = 'Constant';
- console.log(constant);
+ console.log(constant); */
 
  // const exp = require('express'); exp를 함수 불러내는 데 쓴다.
