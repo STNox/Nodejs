@@ -1,0 +1,23 @@
+{
+  "name": "node-basic",
+  "version": "1.0.0",
+  "description": "Node.js 강좌\r ### Node.js 강의",
+  "main": "01 helloworld.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/STNox/Nodejs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/STNox/Nodejs/issues"
+  },
+  "homepage": "https://github.com/STNox/Nodejs#readme",
+  "dependencies": {
+    "moment": "^2.28.0",
+    "moment-timezone": "^0.5.31"
+  }
+}
