@@ -21,5 +21,5 @@ rl.on('line', function(buf){
         sum += pow2;
     }
     rl.close();
-    console.log(`합의 제곱: ${pow}, 제곱의 합: ${sum}`);
+    console.log(`1에서 ${num}까지의 합의 제곱: ${pow}, 제곱의 합: ${sum}`);
 });
