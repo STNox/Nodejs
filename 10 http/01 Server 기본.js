@@ -1,4 +1,3 @@
-const { everySeries } = require('async');
 const http = require('http');
 const view = require('./view/01 first');
 
