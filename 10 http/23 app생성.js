@@ -8,7 +8,6 @@ const template = require('./view/template');
 http.createServer((req, res) => {
     let pathname = url.parse(req.url).pathname;
     let query = url.parse(req.url, true).query;
-    let body;
     console.log(pathname, query.id);
     switch(pathname) {
     case '/':
@@ -43,7 +42,7 @@ http.createServer((req, res) => {
         });
         break;
     case '/create_proc':                                      // 입력 받은 정보 처리
-        body = '';
+        let body = '';
         req.on('data', function(data) {
             body += data;
         });
@@ -53,29 +52,6 @@ http.createServer((req, res) => {
             let filepath = 'data/' + param.subject + '.txt';  // param.: template의 name을 찾아 감
             fs.writeFile(filepath, param.description, error => {
                 res.writeHead(302, {'Location': `/?id=${param.subject}`});  // redirection
-                res.end();
-            });
-        });
-        break;
-    case '/delete':
-        fs.readdir('data', function (error, filelist) {
-            let list = template.listGen(filelist);
-            let control = template.buttonGen();
-            let content = template.deleteForm(query.id);
-            let html = view.index('글 삭제', list, content, control);
-            res.end(html);
-        });
-        break;
-    case '/delete_proc':
-        body = '';
-        req.on('data', function(data) {
-            body += data;
-        });
-        req.on('end', function() {
-            let param = qs.parse(body);                       
-            let filepath = 'data/' + param.subject + '.txt';  
-            fs.unlink(filepath, error => {
-                res.writeHead(302, {'Location': '/'}); 
                 res.end();
             });
         });
