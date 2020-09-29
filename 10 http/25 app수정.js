@@ -27,7 +27,6 @@ http.createServer((req, res) => {
                 let control = template.buttonGen(title);
                 let filename = 'data/' + title + '.txt';
                 fs.readFile(filename, 'utf8', (error, buffer) => {
-                    buffer = buffer.replace(/\n/g, '<br>');
                     let html = view.index(title, list, buffer, control);
                     res.end(html);
                 });
@@ -35,15 +34,15 @@ http.createServer((req, res) => {
         } 
         break;
     case '/create':
-        fs.readdir('data', function (error, filelist) {
+        fs.readdir('data', function (error, filelist) {       // 입력 폼 제공
             let list = template.listGen(filelist);
             let control = template.buttonGen();
-            let content = template.createForm();                        // 입력 폼 제공
+            let content = template.createForm();
             let html = view.index('글 생성', list, content, control);
             res.end(html);
         });
         break;
-    case '/create_proc':                                                // 입력 받은 정보 처리
+    case '/create_proc':                                      // 입력 받은 정보 처리
         body = '';
         req.on('data', function(data) {
             body += data;
@@ -53,8 +52,7 @@ http.createServer((req, res) => {
             // console.log(param.subject, param.description);
             let filepath = 'data/' + param.subject + '.txt';  // param.: template의 name을 찾아 감
             fs.writeFile(filepath, param.description, error => {
-                let encoded = encodeURI(`/?id=${param.subject}`)
-                res.writeHead(302, {'Location': encoded});  // redirection
+                res.writeHead(302, {'Location': `/?id=${param.subject}`});  // redirection
                 res.end();
             });
         });
@@ -105,21 +103,15 @@ http.createServer((req, res) => {
             // console.log(param.original, param.subject, param.description);
             let filepath = 'data/' + param.original + '.txt';
             fs.writeFile(filepath, param.description, error => {
-                let encoded = encodeURI(`/?id=${param.subject}`)
-                /* if (param.original !== param.subject) {
+                if (param.original !== param.subject) {
                     fs.rename(filepath, `data/${param.subject}.txt`, error => {
-                        res.writeHead(302, {'Location': encoded});
+                        res.writeHead(302, {'Location': `/?id=${param.subject}`});
                         res.end();
                     });
                 } else {
-                    res.writeHead(302, {'Location': encoded});
+                    res.writeHead(302, {'Location': `/?id=${param.subject}`});
                     res.end();
-                } */
-                if (param.original !== param.subject) 
-                    fs.renameSync(filepath, `data/${param.subject}.txt`);
-                res.writeHead(302, {'Location': encoded});
-                res.end();
-                
+                }
             });
         });
         break;

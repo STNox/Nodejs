@@ -12,7 +12,7 @@ exports.index = function (title, list, content, control) {
         ${list}
     <hr>
     <p>
-        ${content}
+    ${content}
     </p>
     <hr>
     ${control}
